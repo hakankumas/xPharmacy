@@ -1,0 +1,30 @@
+<% const baseURL = "http://localhost:3000"; %>
+
+<aside id="sidebar" class="sidebar">
+    <ul class="sidebar-nav" id="sidebar-nav">
+        <li class="nav-item">
+            <a class="nav-link" href="<%= baseURL %>/">
+                <i class="fa-solid fa-house-chimney" style="width: 20px"></i>
+                <span>Dashboard</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="<%= baseURL %>/supply">
+                <i class="fa-solid fa-truck-front" style="width: 20px"></i>
+                <span>Tedarikçiler</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="<%= baseURL %>/customer">
+                <i class="fa-solid fa-people-group" style="width: 20px"></i>
+                <span>Müşteriler</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="<%= baseURL %>/drug">
+                <i class="fa-solid fa-capsules" style="width: 20px"></i>
+                <span>İlaçlar</span>
+            </a>
+        </li>
+    </ul>
+</aside>
