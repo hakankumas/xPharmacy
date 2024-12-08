@@ -7,9 +7,11 @@ app.use(express.static("public"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.use("/", (req, res) => {
-    res.send("Hello, world!");
-});
+const homeRoutes = require("./routes/home");
+const apiRoutes = require("./routes/api");
+
+app.use(homeRoutes);
+app.use("/api", apiRoutes);
 
 const PORT = 3000;
 app.listen(PORT, () => {
