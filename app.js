@@ -9,9 +9,15 @@ app.use(express.urlencoded({ extended: true }));
 
 const homeRoutes = require("./routes/home");
 const apiRoutes = require("./routes/api");
+const customerRoutes = require("./routes/customer");
+const drugRoutes = require("./routes/drug");
+const supplyRoutes = require("./routes/supply");
 
 app.use(homeRoutes);
 app.use("/api", apiRoutes);
+app.use("/customer", customerRoutes);
+app.use("/drug", drugRoutes);
+app.use("/supply", supplyRoutes);
 
 const PORT = 3000;
 app.listen(PORT, () => {

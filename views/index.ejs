@@ -45,8 +45,8 @@
     </head>
 
     <body>
-        <%- include('./_partials/_header.ejs') %> <%-
-        include('./_partials/_sidebar.ejs') %>
+        <%- include('./_partials/_header') %> <%-
+        include('./_partials/_sidebar') %>
 
         <main id="main" class="main" style="min-height: 100vh">
             <section class="section dashboard">
@@ -147,15 +147,7 @@
             </section>
         </main>
 
-        <footer id="footer" class="footer">
-            <div
-                class="copyright d-flex justify-content-center align-items-center gap-3"
-            >
-                <div style="font-weight: bold">2024</div>
-                <div style="font-weight: bold">|</div>
-                <div style="font-weight: bold">Eczane KDS</div>
-            </div>
-        </footer>
+        <%- include('./_partials/_footer') %>
 
         <a
             href="#"
