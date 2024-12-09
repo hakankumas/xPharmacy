@@ -2,7 +2,7 @@ const connection = require("../database/db");
 
 module.exports = class Customer {
     // Müşteri Bilgileri
-    static getAll() {
+    static get_all() {
         return connection.execute(`
             SELECT 
                 customer.id as customer_id,
@@ -16,7 +16,7 @@ module.exports = class Customer {
     }
 
     // Müşterilerin Siparişleri
-    static orderOfCustomer() {
+    static customers_orders() {
         return connection.execute(`
             SELECT
                 customer_drug.id as customer_drug_id,

@@ -12,7 +12,7 @@ module.exports = class Supply {
     }
 
     // Tedarikçilerin Satış Bilgileri
-    static sale_infos_of_suppliers() {
+    static suppliers_sales_information() {
         return connection.execute(`
             SELECT
                 supply_drug.id as supply_drug_id,
