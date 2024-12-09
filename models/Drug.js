@@ -10,6 +10,14 @@ module.exports = class Drug {
             FROM drug`);
     }
 
+    // İlaç Sayısı
+    static count_amount() {
+        return connection.execute(`
+            SELECT COUNT(drug.id) as number
+            FROM drug
+        `);
+    }
+
     // Aylara Göre Satılan İlaç Sayısı
     static number_of_drugs_sold_by_months() {
         return connection.execute(`

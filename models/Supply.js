@@ -11,6 +11,30 @@ module.exports = class Supply {
         `);
     }
 
+    // Tedarikçi Sayısı
+    static count_amount_supply() {
+        return connection.execute(`
+            SELECT COUNT(supply.id) as number
+            FROM supply
+        `);
+    }
+
+    // Tedarik Edilebilir İlaç Sayısı
+    static count_amount_supply_drug() {
+        return connection.execute(`
+            SELECT COUNT(supply_drug.id) as number
+            FROM supply_drug
+        `);
+    }
+
+    // Sipariş Sayısı
+    static count_amount_order() {
+        return connection.execute(`
+            SELECT COUNT(supply_drug_order.id) as number
+            FROM supply_drug_order
+        `);
+    }
+
     // Tedarikçilerin Satış Bilgileri
     static suppliers_sales_information() {
         return connection.execute(`
@@ -31,8 +55,8 @@ module.exports = class Supply {
         `);
     }
 
-    // Tedarikçilerin Sipariş Bilgileri
-    static order_infos_from_suppliers() {
+    // Tedarik Edilen İlaçların Sipariş Bilgileri
+    static order_infos_for_supplied_drugs() {
         return connection.execute(`
             SELECT
 				supply_drug_order.id as order_id,

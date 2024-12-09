@@ -15,6 +15,22 @@ module.exports = class Customer {
         `);
     }
 
+    // Müşteri Sayısı
+    static count_amount_customer() {
+        return connection.execute(`
+            SELECT COUNT(customer.id) as number
+            FROM customer
+        `);
+    }
+
+    // İşlem Sayısı
+    static count_amount_process() {
+        return connection.execute(`
+            SELECT COUNT(customer_drug.id) as number
+            FROM customer_drug
+        `);
+    }
+
     // Müşterilerin Siparişleri
     static customers_orders() {
         return connection.execute(`
