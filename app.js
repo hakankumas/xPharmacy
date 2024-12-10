@@ -19,7 +19,8 @@ app.use("/customer", customerRoutes);
 app.use("/drug", drugRoutes);
 app.use("/supply", supplyRoutes);
 
-const PORT = 3000;
+const PORT = 3002;
+app.locals.baseURL = `http://localhost:${PORT}`;
 app.listen(PORT, () => {
     console.log(`Server is running at ${PORT}`);
 });
