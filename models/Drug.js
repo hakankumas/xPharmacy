@@ -26,7 +26,21 @@ module.exports = class Drug {
                 MONTHNAME(customer_drug.date) AS month,
                 MONTH(customer_drug.date) AS month_decimal,
                 CONCAT(
-                    YEAR(customer_drug.date), ' ', MONTHNAME(customer_drug.date)
+                    YEAR(customer_drug.date), ' ', 
+                    CASE MONTH(customer_drug.date)
+                        WHEN 1 THEN 'Ocak'
+                        WHEN 2 THEN 'Şubat'
+                        WHEN 3 THEN 'Mart'
+                        WHEN 4 THEN 'Nisan'
+                        WHEN 5 THEN 'Mayıs'
+                        WHEN 6 THEN 'Haziran'
+                        WHEN 7 THEN 'Temmuz'
+                        WHEN 8 THEN 'Ağustos'
+                        WHEN 9 THEN 'Eylül'
+                        WHEN 10 THEN 'Ekim'
+                        WHEN 11 THEN 'Kasım'
+                        WHEN 12 THEN 'Aralık'
+                    END
                 ) AS fulldate,
                 COUNT(customer_drug.id) as number
             FROM customer_drug
