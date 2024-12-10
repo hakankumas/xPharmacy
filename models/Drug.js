@@ -11,7 +11,7 @@ module.exports = class Drug {
     }
 
     // İlaç Sayısı
-    static count_amount() {
+    static count_amount_drug() {
         return connection.execute(`
             SELECT COUNT(drug.id) as number
             FROM drug

@@ -51,95 +51,171 @@
         <main id="main" class="main" style="min-height: 100vh">
             <section class="section dashboard">
                 <div class="row">
-                    <div class="col-lg-8">
-                        <div class="row">
-                            <div class="col-xxl-4 col-md-6">
-                                <div class="card info-card sales-card">
-                                    <div class="card-body">
-                                        <h5 class="card-title">
-                                            Sales <span>| Today</span>
-                                        </h5>
+                    <div
+                        class="col-lg-12 d-flex justify-content-center gap-5 flex-wrap"
+                    >
+                        <div class="col-12 col-lg-3">
+                            <div class="card info-card sales-card">
+                                <div class="card-body">
+                                    <h5 class="card-title">Müşteri (Kişi)</h5>
 
-                                        <div class="d-flex align-items-center">
-                                            <div
-                                                class="card-icon rounded-circle d-flex align-items-center justify-content-center"
-                                            >
-                                                <i class="bi bi-cart"></i>
-                                            </div>
-                                            <div class="ps-3">
-                                                <h6>145</h6>
-                                                <span
-                                                    class="text-success small pt-1 fw-bold"
-                                                    >12%</span
-                                                >
-                                                <span
-                                                    class="text-muted small pt-2 ps-1"
-                                                    >increase</span
-                                                >
-                                            </div>
+                                    <div class="d-flex align-items-center">
+                                        <div
+                                            class="card-icon rounded-circle d-flex align-items-center justify-content-center"
+                                        >
+                                            <i class="bi bi-cart"></i>
+                                        </div>
+                                        <div class="ps-3">
+                                            <h6>
+                                                <%=
+                                                count_amount_customer[0].number
+                                                %>
+                                            </h6>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+                        </div>
 
-                            <div class="col-xxl-4 col-md-6">
-                                <div class="card info-card revenue-card">
-                                    <div class="card-body">
-                                        <h5 class="card-title">
-                                            Revenue <span>| This Month</span>
-                                        </h5>
+                        <div class="col-12 col-lg-3">
+                            <div class="card info-card sales-card">
+                                <div class="card-body">
+                                    <h5 class="card-title">
+                                        Alışveriş (İşlem)
+                                    </h5>
 
-                                        <div class="d-flex align-items-center">
-                                            <div
-                                                class="card-icon rounded-circle d-flex align-items-center justify-content-center"
-                                            >
-                                                <i
-                                                    class="bi bi-currency-dollar"
-                                                ></i>
-                                            </div>
-                                            <div class="ps-3">
-                                                <h6>$3,264</h6>
-                                                <span
-                                                    class="text-success small pt-1 fw-bold"
-                                                    >8%</span
-                                                >
-                                                <span
-                                                    class="text-muted small pt-2 ps-1"
-                                                    >increase</span
-                                                >
-                                            </div>
+                                    <div class="d-flex align-items-center">
+                                        <div
+                                            class="card-icon rounded-circle d-flex align-items-center justify-content-center"
+                                        >
+                                            <i class="bi bi-cart"></i>
+                                        </div>
+                                        <div class="ps-3">
+                                            <h6>
+                                                <%=
+                                                count_amount_process[0].number
+                                                %>
+                                            </h6>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+                        </div>
 
-                            <div class="col-xxl-4 col-xl-12">
-                                <div class="card info-card customers-card">
-                                    <div class="card-body">
-                                        <h5 class="card-title">
-                                            Customers <span>| This Year</span>
-                                        </h5>
+                        <div class="col-12 col-lg-3">
+                            <div class="card info-card sales-card">
+                                <div class="card-body">
+                                    <h5 class="card-title">
+                                        İlaç Çeşidi (Stok)
+                                    </h5>
 
-                                        <div class="d-flex align-items-center">
-                                            <div
-                                                class="card-icon rounded-circle d-flex align-items-center justify-content-center"
-                                            >
-                                                <i class="bi bi-people"></i>
-                                            </div>
-                                            <div class="ps-3">
-                                                <h6>1244</h6>
-                                                <span
-                                                    class="text-danger small pt-1 fw-bold"
-                                                    >12%</span
-                                                >
-                                                <span
-                                                    class="text-muted small pt-2 ps-1"
-                                                    >decrease</span
-                                                >
-                                            </div>
+                                    <div class="d-flex align-items-center">
+                                        <div
+                                            class="card-icon rounded-circle d-flex align-items-center justify-content-center"
+                                        >
+                                            <i class="bi bi-cart"></i>
+                                        </div>
+                                        <div class="ps-3">
+                                            <h6>
+                                                <%= count_amount_drug[0].number
+                                                %>
+                                            </h6>
                                         </div>
                                     </div>
                                 </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div
+                        class="col-lg-12 d-flex justify-content-center gap-5 flex-wrap"
+                    >
+                        <div class="col-12 col-lg-3">
+                            <div class="card info-card sales-card">
+                                <div class="card-body">
+                                    <h5 class="card-title">Tedarikçi</h5>
+
+                                    <div class="d-flex align-items-center">
+                                        <div
+                                            class="card-icon rounded-circle d-flex align-items-center justify-content-center"
+                                        >
+                                            <i class="bi bi-cart"></i>
+                                        </div>
+                                        <div class="ps-3">
+                                            <h6>
+                                                <%=
+                                                count_amount_supply[0].number %>
+                                            </h6>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-12 col-lg-3">
+                            <div class="card info-card sales-card">
+                                <div class="card-body">
+                                    <h5 class="card-title">
+                                        Tedarik Edilebilir İlaç Çeşidi
+                                    </h5>
+
+                                    <div class="d-flex align-items-center">
+                                        <div
+                                            class="card-icon rounded-circle d-flex align-items-center justify-content-center"
+                                        >
+                                            <i class="bi bi-cart"></i>
+                                        </div>
+                                        <div class="ps-3">
+                                            <h6>
+                                                <%=
+                                                count_amount_supply_drug[0].number
+                                                %>
+                                            </h6>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-12 col-lg-3">
+                            <div class="card info-card sales-card">
+                                <div class="card-body">
+                                    <h5 class="card-title">
+                                        Tedarikçilerden İlaç Siparişi
+                                    </h5>
+
+                                    <div class="d-flex align-items-center">
+                                        <div
+                                            class="card-icon rounded-circle d-flex align-items-center justify-content-center"
+                                        >
+                                            <i class="bi bi-cart"></i>
+                                        </div>
+                                        <div class="ps-3">
+                                            <h6>
+                                                <%= count_amount_order[0].number
+                                                %>
+                                            </h6>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 col-lg-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h1 class="card-title" style="font-size: 24px">
+                                    Lorem, ipsum dolor.
+                                </h1>
+                            </div>
+                            <div class="card-body">
+                                Lorem ipsum dolor sit amet consectetur
+                                adipisicing elit. Deleniti aperiam tenetur
+                                minima fugiat, unde blanditiis harum, dolorum
+                                qui numquam perspiciatis reiciendis id eveniet
+                                cum veritatis ab! Vel, ipsa architecto.
+                                Doloremque.
                             </div>
                         </div>
                     </div>
