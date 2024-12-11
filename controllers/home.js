@@ -11,7 +11,7 @@ exports.index = async (req, res) => {
     const count_amount_order = await Supply.count_amount_order();
 
     res.render("index", {
-        title: "Ana Sayfa | Eczane Karar Destek Sistemleri",
+        title: "Ana Sayfa",
 
         count_amount_customer: count_amount_customer[0],
         count_amount_process: count_amount_process[0],
@@ -24,6 +24,6 @@ exports.index = async (req, res) => {
 
 exports.login = async (req, res) => {
     res.render("login", {
-        title: "Admin Giriş | Eczane Karar Destek Sistemleri",
+        title: "Admin Giriş",
     });
 };
