@@ -6,8 +6,23 @@ module.exports = class Drug {
         return connection.execute(`
             SELECT 
                 drug.id as drug_id,
-                drug.name as drug_name
+                drug.name as drug_name,
+                CONCAT(ROUND(drug.sale_price,2),' TL') as drug_sale_price
             FROM drug`);
+    }
+
+    // İlaç Ekle
+    static create(condition) {
+        const { name, sale_price } = condition;
+        return connection.execute(
+            `INSERT INTO drug (name, sale_price) VALUES (?,?)`,
+            [name, sale_price]
+        );
+    }
+
+    // İlaç Sil
+    static delete(drug_id) {
+        return connection.execute(`DELETE FROM drug WHERE id = ${drug_id}`);
     }
 
     // İlaç Sayısı
