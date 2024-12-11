@@ -59,9 +59,9 @@
                                             <td><%= item.customer_surname %></td>
                                             <td><%= item.gender_name %></td>
                                             <td><%= item.drug_name %></td>
-                                            <td class="text-center"><%= item.drug_sale_price %></td>
-                                            <td class="text-center"><%= item.customer_drug_amount %></td>
-                                            <td class="text-center"><%= item.drug_total_price %></td>
+                                            <td class="text-center"><%= item.drug_sale_price %> ₺</td>
+                                            <td class="text-center"><%= item.customer_drug_amount %> Adet</td>
+                                            <td class="text-center"><%= item.drug_total_price %> ₺</td>
                                             <td class="text-center"><%= new Intl.DateTimeFormat("tr-TR", { day: "numeric", month: "short", year: "numeric" }).format(new Date(item.customer_drug_date)) %></td>
                                             <td class="text-danger text-center">
                                                 <a href="<%= baseURL %>/order/delete/<%= item.customer_drug_id %>" class="btn btn-outline-danger">Sil</a>

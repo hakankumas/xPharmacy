@@ -69,7 +69,8 @@ module.exports = class Supply {
                 supply_drug.buying_price as drug_buying_price,
                 
                 supply_drug_order.amount as order_amount,
-                supply_drug_order.date as order_date 
+                ROUND(supply_drug_order.amount * supply_drug.buying_price,2) as order_total_price,
+                supply_drug_order.date as order_date
                 
             FROM supply_drug_order
             INNER JOIN supply_drug ON supply_drug_order.supply_drug_id = supply_drug.id

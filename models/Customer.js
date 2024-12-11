@@ -10,8 +10,7 @@ module.exports = class Customer {
                 customer.surname as customer_surname,
                 customer.gender_id as gender_id,
                 gender.name as gender_name,
-                CONCAT(ROUND(SUM(drug.sale_price * customer_drug.amount),2), ' TL') as total_revenue,
-                ROUND(SUM(drug.sale_price * customer_drug.amount),2) as total_revenue_sub,
+                ROUND(SUM(drug.sale_price * customer_drug.amount),2) as total_revenue,
                 COUNT(customer_drug.customer_id) as total_process,
                 SUM(customer_drug.amount) as total_amount
             FROM customer_drug
@@ -19,7 +18,7 @@ module.exports = class Customer {
             INNER JOIN drug ON customer_drug.drug_id = drug.id
             INNER JOIN gender ON customer.gender_id = gender.id
             GROUP BY customer.id  
-            ORDER BY total_revenue_sub DESC
+            ORDER BY total_revenue DESC
         `);
     }
 
@@ -51,9 +50,9 @@ module.exports = class Customer {
                 gender.name as gender_name,
                 drug.id as drug_id,
                 drug.name as drug_name,
-                CONCAT(ROUND(drug.sale_price,2),' TL') as drug_sale_price,
+                ROUND(drug.sale_price,2) as drug_sale_price,
                 customer_drug.amount as customer_drug_amount,
-                CONCAT(ROUND(drug.sale_price * customer_drug.amount,2),' TL') as drug_total_price,
+                ROUND(drug.sale_price * customer_drug.amount,2) as drug_total_price,
                 customer_drug.date as customer_drug_date
             FROM customer_drug
             INNER JOIN customer ON customer_drug.customer_id = customer.id
