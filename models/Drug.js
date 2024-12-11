@@ -33,8 +33,8 @@ module.exports = class Drug {
         `);
     }
 
-    // Aylara Göre Satılan İlaç Sayısı
-    static number_of_drugs_sold_by_months() {
+    // Aylara Göre Satışların İşlem Sayısı
+    static number_of_sales_process_by_months() {
         return connection.execute(`
             SELECT 
                 YEAR(customer_drug.date) AS year,
@@ -63,4 +63,18 @@ module.exports = class Drug {
             ORDER BY year DESC, month_decimal DESC
         `);
     }
+
+    // Aylara Göre Toplam Hasılatlar
+    // static number_of_total_revenue_by_months() {
+    //     return connection.execute(`
+
+    //     `);
+    // }
+
+    // Aylara Göre Satılan İlaç Adet Sayıları
+    // static number_of_sold_drugs_by_months() {
+    //     return connection.execute(`
+
+    //     `);
+    // }
 };

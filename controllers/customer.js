@@ -1,14 +1,11 @@
 const Customer = require("../models/Customer");
 
 exports.index = async (req, res) => {
-    const customers_orders = await Customer.customers_orders();
-    const customers_number_of_process =
-        await Customer.customers_number_of_process();
+    const customers_detailed_infos = await Customer.customers_detailed_infos();
 
     res.render("./customer/index", {
-        title: "Müşteriler",
+        title: "Müşteri Bilgileri",
 
-        customers_orders: customers_orders[0],
-        customers_number_of_process: customers_number_of_process[0],
+        customers_detailed_infos: customers_detailed_infos[0],
     });
 };

@@ -9,11 +9,11 @@ exports.login = async (req, res) => {
     else res.redirect("/login");
 };
 
-exports.number_of_drugs_sold_by_months = async (req, res) => {
-    const number_of_drugs_sold_by_months =
-        await Drug.number_of_drugs_sold_by_months();
+exports.number_of_sales_process_by_months = async (req, res) => {
+    const number_of_sales_process_by_months =
+        await Drug.number_of_sales_process_by_months();
 
     res.status(200).json({
-        number_of_drugs_sold_by_months: number_of_drugs_sold_by_months[0],
+        number_of_sales_process_by_months: number_of_sales_process_by_months[0],
     });
 };

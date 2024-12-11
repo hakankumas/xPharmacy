@@ -14,12 +14,12 @@
             async function fetchDataAndDrawChart() {
                 try {
                     const response = await fetch(
-                        `<%= baseURL %>/api/number_of_drugs_sold_by_months`
+                        `<%= baseURL %>/api/number_of_sales_process_by_months`
                     );
                     const result = await response.json();
 
                     const chartData = [["Aylar", "Satış", { role: "style" }]];
-                    result.number_of_drugs_sold_by_months.forEach((item) => {
+                    result.number_of_sales_process_by_months.forEach((item) => {
                         const color = generateColor();
                         chartData.push([
                             item.fulldate,
@@ -237,7 +237,7 @@
                                     class="text-center font-weight-bold pt-3"
                                     style="font-size: 25px"
                                 >
-                                    Aylara Göre Satış Sayıları
+                                    Aylara Göre İşlem Sayıları
                                 </h1>
                                 <div
                                     id="chart_div"

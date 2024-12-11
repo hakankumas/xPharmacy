@@ -16,19 +16,19 @@
         <main id="main" class="main" style="min-height: 100vh">
             <section class="section dashboard">
                 <div class="row">
-                    <div class="col-12 col-lg-7">
+                    <div class="col-12 col-lg-12">
                         <div class="card">
                             <div
                                 class="card-body"
                             >
                                 <h1
                                     class="text-center pt-3"
-                                    style="font-size: 24px"
+                                    style="font-size: 24px; font-weight: bold"
                                 >
-                                    Alışveriş Geçmişi
+                                    Müşteri Bilgileri
                                 </h1>
                                 <table
-                                    id="table_shopping"
+                                    id="table_customers"
                                     class="display rounded"
                                     style="
                                         width: 100%;
@@ -41,79 +41,26 @@
                                             <th>Ad</th>
                                             <th>Soyad</th>
                                             <th>Cinsiyet</th>
-                                            <th>İlaç</th>
-                                            <th class="text-center">Fiyat</th>
-                                            <th class="text-center">Adet</th>
-                                            <th class="text-center">Toplam</th>
-                                            <th class="text-center">Tarih</th>
+                                            <th class="text-center">Toplam Gelir</th>
+                                            <th class="text-center">İşlem Sayısı</th>
+                                            <th class="text-center">Satılan İlaç Adedi</th>
                                             <th class="text-center">Sil</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <!-- prettier-ignore -->
-                                        <% customers_orders.forEach(item => { %>
-                                        <!-- prettier-ignore -->
-                                        <tr>
-                                            <td class="text-center"><%= item.customer_drug_id %></td>
-                                            <td><%= item.customer_name %></td>
-                                            <td><%= item.customer_surname %></td>
-                                            <td><%= item.gender_name %></td>
-                                            <td><%= item.drug_name %></td>
-                                            <td class="text-center"><%= item.drug_sale_price %></td>
-                                            <td class="text-center"><%= item.customer_drug_amount %></td>
-                                            <td class="text-center"><%= item.drug_total_price %></td>
-                                            <td class="text-center"><%= new Intl.DateTimeFormat("tr-TR", { day: "numeric", month: "short", year: "numeric" }).format(new Date(item.customer_drug_date)) %></td>
-                                            <td class="text-danger text-center">
-                                                <a href="<%= baseURL %>/customer/delete_shopping/<%= item.customer_drug_id %>" class="btn btn-outline-danger">Sil</a>
-                                            </td>
-                                        </tr>
-                                        <% }) %>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-12 col-lg-5">
-                        <div class="card">
-                            <div
-                                class="card-body"
-                            >
-                                <h1
-                                    class="text-center pt-3"
-                                    style="font-size: 24px"
-                                >
-                                    Müşterilerin Tekrar Eden Sipariş Sayıları
-                                </h1>
-                                <table
-                                    id="table_repeat_shopping"
-                                    class="display rounded"
-                                    style="
-                                        width: 100%;
-                                        background-color: whitesmoke;
-                                    "
-                                >
-                                    <thead>
-                                        <tr>
-                                            <th class="text-center">ID</th>
-                                            <th>Ad</th>
-                                            <th>Soyad</th>
-                                            <th>Cinsiyet</th>
-                                            <th class="text-center">Sipariş Sayısı</th>
-                                            <th class="text-center">Sil</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <!-- prettier-ignore -->
-                                        <% customers_number_of_process.forEach(item => { %>
+                                        <% customers_detailed_infos.forEach(item => { %>
                                         <!-- prettier-ignore -->
                                         <tr>
                                             <td class="text-center"><%= item.customer_id %></td>
                                             <td><%= item.customer_name %></td>
                                             <td><%= item.customer_surname %></td>
                                             <td><%= item.gender_name %></td>
-                                            <td class="text-center"><%= item.number %></td>
+                                            <td class="text-center"><%= item.total_revenue_sub %> ₺</td>
+                                            <td class="text-center"><%= item.total_process %> Kez</td>
+                                            <td class="text-center"><%= item.total_amount %> Adet</td>
                                             <td class="text-danger text-center">
-                                                <a href="<%= baseURL %>/customer/delete_id/<%= item.customer_id %>" class="btn btn-outline-danger">Sil</a>
+                                                <a href="<%= baseURL %>/customer/delete/<%= item.customer_id %>" class="btn btn-outline-danger">Sil</a>
                                             </td>
                                         </tr>
                                         <% }) %>
@@ -132,13 +79,7 @@
         <%- include('../_partials/_scripts') %>
         <!-- prettier-ignore -->
         <script>
-            new DataTable("#table_shopping", {
-                paging: false,
-                scrollCollapse: true,
-                scrollY: "75vh",
-                order: [[0, "desc"]],
-            });
-            new DataTable("#table_repeat_shopping", {
+            new DataTable("#table_customers", {
                 paging: false,
                 scrollCollapse: true,
                 scrollY: "75vh",

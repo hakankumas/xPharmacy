@@ -10,12 +10,14 @@ app.use(express.urlencoded({ extended: true }));
 const homeRoutes = require("./routes/home");
 const apiRoutes = require("./routes/api");
 const customerRoutes = require("./routes/customer");
+const orderRoutes = require("./routes/order");
 const drugRoutes = require("./routes/drug");
 const supplyRoutes = require("./routes/supply");
 
 app.use(homeRoutes);
 app.use("/api", apiRoutes);
 app.use("/customer", customerRoutes);
+app.use("/order", orderRoutes);
 app.use("/drug", drugRoutes);
 app.use("/supply", supplyRoutes);
 

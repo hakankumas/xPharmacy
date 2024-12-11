@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <!-- prettier-ignore -->
+        <%- include('../_partials/_head.ejs'); %>
+        <%- include('../_partials/_cdn_datatables.ejs'); %>
+        <!-- prettier-ignore -->
+    </head>
+
+    <body>
+        <!-- prettier-ignore -->
+        <%- include('../_partials/_header') %>
+        <%- include('../_partials/_sidebar') %>
+        <!-- prettier-ignore -->
+
+        <main id="main" class="main" style="min-height: 100vh">
+            <section class="section dashboard">
+                <div class="row">
+                    <div class="col-12 col-lg-12">
+                        <div class="card">
+                            <div
+                                class="card-body"
+                            >
+                                <h1
+                                    class="text-center pt-3"
+                                    style="font-size: 24px; font-weight: bold"
+                                >
+                                    Sipariş Geçmişi
+                                </h1>
+                                <table
+                                    id="table_orders"
+                                    class="display rounded"
+                                    style="
+                                        width: 100%;
+                                        background-color: whitesmoke;
+                                    "
+                                >
+                                    <thead>
+                                        <tr>
+                                            <th class="text-center">ID</th>
+                                            <th>Ad</th>
+                                            <th>Soyad</th>
+                                            <th>Cinsiyet</th>
+                                            <th>İlaç</th>
+                                            <th class="text-center">Fiyat</th>
+                                            <th class="text-center">Adet</th>
+                                            <th class="text-center">Toplam</th>
+                                            <th class="text-center">Tarih</th>
+                                            <th class="text-center">Sil</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <!-- prettier-ignore -->
+                                        <% customers_order_history.forEach(item => { %>
+                                        <!-- prettier-ignore -->
+                                        <tr>
+                                            <td class="text-center"><%= item.customer_drug_id %></td>
+                                            <td><%= item.customer_name %></td>
+                                            <td><%= item.customer_surname %></td>
+                                            <td><%= item.gender_name %></td>
+                                            <td><%= item.drug_name %></td>
+                                            <td class="text-center"><%= item.drug_sale_price %></td>
+                                            <td class="text-center"><%= item.customer_drug_amount %></td>
+                                            <td class="text-center"><%= item.drug_total_price %></td>
+                                            <td class="text-center"><%= new Intl.DateTimeFormat("tr-TR", { day: "numeric", month: "short", year: "numeric" }).format(new Date(item.customer_drug_date)) %></td>
+                                            <td class="text-danger text-center">
+                                                <a href="<%= baseURL %>/order/delete/<%= item.customer_drug_id %>" class="btn btn-outline-danger">Sil</a>
+                                            </td>
+                                        </tr>
+                                        <% }) %>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- prettier-ignore -->
+        <%- include('../_partials/_footer') %>
+        <%- include('../_partials/_arrowup') %>
+        <%- include('../_partials/_scripts') %>
+        <!-- prettier-ignore -->
+        <script>
+            new DataTable("#table_orders", {
+                paging: false,
+                scrollCollapse: true,
+                scrollY: "75vh",
+                order: [[0, "desc"]],
+            });
+        </script>
+    </body>
+</html>
