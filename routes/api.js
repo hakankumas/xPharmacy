@@ -7,5 +7,9 @@ router.get(
     "/number_of_sales_process_by_months",
     apiController.number_of_sales_process_by_months
 );
+router.get(
+    "/number_of_sales_revenue_by_months",
+    apiController.number_of_sales_revenue_by_months
+);
 
 module.exports = router;

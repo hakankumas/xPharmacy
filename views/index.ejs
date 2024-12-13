@@ -9,9 +9,10 @@
 
         <script type="text/javascript">
             google.charts.load("current", { packages: ["corechart"] });
-            google.charts.setOnLoadCallback(fetchDataAndDrawChart);
+            google.charts.setOnLoadCallback(fetchDataAndDrawChart1);
+            google.charts.setOnLoadCallback(fetchDataAndDrawChart2);
 
-            async function fetchDataAndDrawChart() {
+            async function fetchDataAndDrawChart1() {
                 try {
                     const response = await fetch(
                         `<%= baseURL %>/api/number_of_sales_process_by_months`
@@ -49,7 +50,54 @@
                     };
 
                     const chart = new google.visualization.ColumnChart(
-                        document.getElementById("chart_div")
+                        document.getElementById("chart_div1")
+                    );
+
+                    chart.draw(data, options);
+                } catch (error) {
+                    console.error("Veri çekilirken hata oluştu:", error);
+                }
+            }
+
+            async function fetchDataAndDrawChart2() {
+                try {
+                    const response = await fetch(
+                        `<%= baseURL %>/api/number_of_sales_revenue_by_months`
+                    );
+                    const result = await response.json();
+
+                    const chartData = [["Aylar", "Hasılat", { role: "style" }]];
+                    result.number_of_sales_revenue_by_months.forEach((item) => {
+                        const color = generateColor();
+                        chartData.push([
+                            item.fulldate,
+                            parseFloat(item.number),
+                            color,
+                        ]);
+                    });
+
+                    const data =
+                        google.visualization.arrayToDataTable(chartData);
+
+                    const options = {
+                        hAxis: {
+                            title: "Aylar",
+                            minValue: 0,
+                            format: "decimal",
+                        },
+                        vAxis: {
+                            title: "Hasılat",
+                            format: "decimal",
+                        },
+                        legend: { position: "none" },
+                        chartArea: {
+                            top: 40,
+                            bottom: 120,
+                        },
+                    };
+
+                    const chart = new google.visualization.ColumnChart(
+                        document.getElementById("chart_div2")
                     );
 
                     chart.draw(data, options);
@@ -234,13 +282,29 @@
                         <div class="card">
                             <div class="card-body">
                                 <h1
-                                    class="text-center font-weight-bold pt-3"
-                                    style="font-size: 25px"
+                                    class="text-center pt-3"
+                                    style="font-size: 25px; font-weight: bold;"
                                 >
-                                    Aylara Göre İşlem Sayıları
+                                    Aylara Göre Alışveriş Sayıları
                                 </h1>
                                 <div
-                                    id="chart_div"
+                                    id="chart_div1"
+                                    style="min-width: 100%; height: 60vh"
+                                ></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-lg-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <h1
+                                    class="text-center pt-3"
+                                    style="font-size: 25px; font-weight: bold;"
+                                >
+                                    Aylara Göre Hasılatlar
+                                </h1>
+                                <div
+                                    id="chart_div2"
                                     style="min-width: 100%; height: 60vh"
                                 ></div>
                             </div>

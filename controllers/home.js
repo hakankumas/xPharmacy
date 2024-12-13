@@ -1,14 +1,12 @@
-const Customer = require("../models/Customer");
-const Drug = require("../models/Drug");
-const Supply = require("../models/Supply");
+const Count = require("../models/Count");
 
 exports.index = async (req, res) => {
-    const count_amount_customer = await Customer.count_amount_customer();
-    const count_amount_process = await Customer.count_amount_process();
-    const count_amount_drug = await Drug.count_amount_drug();
-    const count_amount_supply = await Supply.count_amount_supply();
-    const count_amount_supply_drug = await Supply.count_amount_supply_drug();
-    const count_amount_order = await Supply.count_amount_order();
+    const count_amount_customer = await Count.count_amount_customer();
+    const count_amount_process = await Count.count_amount_process();
+    const count_amount_drug = await Count.count_amount_drug();
+    const count_amount_supply = await Count.count_amount_supply();
+    const count_amount_supply_drug = await Count.count_amount_supply_drug();
+    const count_amount_order = await Count.count_amount_order();
 
     res.render("index", {
         title: "Ana Sayfa",
