@@ -4,7 +4,69 @@
         <!-- prettier-ignore -->
         <%- include('../_partials/_head'); %>
         <%- include('../_partials/_cdn_datatables'); %>
+        <%- include('../_partials/_cdn_googlecharts'); %>
         <!-- prettier-ignore -->
+
+        <script type="text/javascript">
+            google.charts.load("current", { packages: ["corechart"] });
+            google.charts.setOnLoadCallback(fetchDataAndDrawChart);
+
+            async function fetchDataAndDrawChart() {
+                try {
+                    const response = await fetch(
+                        `<%= baseURL %>/api/number_of_orders_placed_from_suppliers`
+                    );
+                    const result = await response.json();
+
+                    const chartData = [
+                        ["Tedarikçi", "Sipariş Sayısı", { role: "style" }],
+                    ];
+                    result.number_of_orders_placed_from_suppliers.forEach((item) => {
+                        const color = generateColor();
+                        chartData.push([
+                            item.supply_name,
+                            parseFloat(item.number),
+                            color,
+                        ]);
+                    });
+
+                    const data =
+                        google.visualization.arrayToDataTable(chartData);
+
+                    const options = {
+                        hAxis: {
+                            title: "Tedarikçi",
+                        },
+                        vAxis: {
+                            title: "Sipariş Sayısı",
+                        },
+                        legend: { position: "none" },
+                        chartArea: {
+                            top: 40,
+                            bottom: 120,
+                        },
+                    };
+
+                    const chart = new google.visualization.ColumnChart(
+                        document.getElementById("chart_div")
+                    );
+
+                    chart.draw(data, options);
+                } catch (error) {
+                    console.error("Veri çekilirken hata oluştu:", error);
+                }
+            }
+
+            // Rastgele renk oluşturma fonksiyonu
+            function generateColor() {
+                const letters = "0123456789ABCDEF";
+                let color = "#";
+                for (let i = 0; i < 6; i++) {
+                    color += letters[Math.floor(Math.random() * 16)];
+                }
+                return color;
+            }
+        </script>
     </head>
 
     <body>
@@ -194,6 +256,22 @@
                     </div>
                     <div class="col-12 col-lg-12">
                         <div class="card">
+                            <div class="card-body">
+                                <h1
+                                    class="text-center pt-3"
+                                    style="font-size: 25px; font-weight: bold"
+                                >
+                                    Tedarikçilerden Verilen Sipariş Sayıları
+                                </h1>
+                                <div
+                                    id="chart_div"
+                                    style="min-width: 100%; height: 60vh"
+                                ></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-lg-12">
+                        <div class="card">
                             <div class="card-body" style="min-height: 30vh">
                                 <h1
                                     class="py-3"
@@ -309,16 +387,14 @@
                 scrollY: "50vh",
                 order: [[0, "desc"]],
             });
-        </script>
-        <script>
+
             new DataTable("#table_supply_drug", {
                 paging: false,
                 scrollCollapse: true,
                 scrollY: "50vh",
                 order: [[0, "asc"]],
             });
-        </script>
-        <script>
+
             new DataTable("#table_order", {
                 paging: false,
                 scrollCollapse: true,

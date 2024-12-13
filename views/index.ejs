@@ -1,11 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
+        <!-- prettier-ignore -->
         <%- include('./_partials/_head') %>
-        <script
-            type="text/javascript"
-            src="https://www.gstatic.com/charts/loader.js"
-        ></script>
+        <%- include('./_partials/_cdn_googlecharts') %>
+        <!-- prettier-ignore -->
 
         <script type="text/javascript">
             google.charts.load("current", { packages: ["corechart"] });

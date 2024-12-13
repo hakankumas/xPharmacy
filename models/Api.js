@@ -94,4 +94,19 @@ module.exports = class Api {
             ORDER BY year DESC, month_decimal DESC
         `);
     }
+
+    // Tedarikçilerden Verilen Siparişlerin Sayıları
+    static number_of_orders_placed_from_suppliers() {
+        return connection.execute(`
+            SELECT
+                supply.id as supply_id,
+                supply.name as supply_name,
+                COUNT(supply_drug_order.id) as number
+            FROM supply_drug_order
+            INNER JOIN supply_drug ON supply_drug_order.supply_drug_id = supply_drug.id
+            INNER JOIN supply ON supply_drug.supply_id = supply.id
+            INNER JOIN drug ON supply_drug.drug_id = drug.id
+            GROUP BY supply.id
+        `);
+    }
 };

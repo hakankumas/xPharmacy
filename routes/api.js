@@ -15,5 +15,9 @@ router.get(
     "/number_of_sales_amount_by_months",
     apiController.number_of_sales_amount_by_months
 );
+router.get(
+    "/number_of_orders_placed_from_suppliers",
+    apiController.number_of_orders_placed_from_suppliers
+);
 
 module.exports = router;
