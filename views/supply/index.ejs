@@ -1,7 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <%- include('../_partials/_head') %>
+        <!-- prettier-ignore -->
+        <%- include('../_partials/_head'); %>
+        <%- include('../_partials/_cdn_datatables'); %>
+        <!-- prettier-ignore -->
     </head>
 
     <body>
@@ -15,9 +18,59 @@
                 <div class="row">
                     <div class="col-12 col-lg-6">
                         <div class="card">
-                            Tedarikçi Ekle
-                            <br>
-                            Tedarikçiler Listesi
+                            <div class="card-body">
+                                <h1
+                                    class="pt-3"
+                                    style="font-size: 24px; font-weight: bold"
+                                >
+                                    Tedarikçi Ekle
+                                </h1>
+                                <form action="<%= baseURL %>/supply/create" method="post">
+                                    <div class="d-flex gap-3">
+                                        <input type="text" class="form-control" name="supply_name" placeholder="Tedarikçi Adı" required>
+                                        <button class="btn btn-success" style="width: 100px;" type="submit">Ekle</button>
+                                    </div>
+                                </form>
+                            </div>
+                            <div
+                                class="card-body"
+                            >
+                                <h1
+                                    class="text-center pt-3"
+                                    style="font-size: 24px; font-weight: bold"
+                                >
+                                    Tedarikçi Listesi
+                                </h1>
+                                <table
+                                    id="table_suppliers"
+                                    class="display rounded"
+                                    style="
+                                        width: 100%;
+                                        background-color: whitesmoke;
+                                    "
+                                >
+                                    <thead>
+                                        <tr>
+                                            <th class="text-center">ID</th>
+                                            <th>Tedarikçi Adı</th>
+                                            <th class="text-center">Sil</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <!-- prettier-ignore -->
+                                        <% list_supply.forEach(item => { %>
+                                        <!-- prettier-ignore -->
+                                        <tr>
+                                            <td class="text-center"><%= item.supply_id %></td>
+                                            <td><%= item.supply_name %></td>
+                                            <td class="text-danger text-center">
+                                                <a href="<%= baseURL %>/supply/delete/<%= item.supply_id %>" class="btn btn-outline-danger">Sil</a>
+                                            </td>
+                                        </tr>
+                                        <% }) %>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
                     <div class="col-12 col-lg-6">
@@ -43,5 +96,13 @@
         <%- include('../_partials/_arrowup') %>
         <%- include('../_partials/_scripts') %>
         <!-- prettier-ignore -->
+        <script>
+            new DataTable("#table_suppliers", {
+                paging: false,
+                scrollCollapse: true,
+                scrollY: "75vh",
+                order: [[0, "desc"]],
+            });
+        </script>
     </body>
 </html>

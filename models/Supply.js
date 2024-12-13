@@ -11,6 +11,38 @@ module.exports = class Supply {
         `);
     }
 
+    // Tedarikçi Ekle
+    static create(supply_name) {
+        return connection.execute(`INSERT INTO supply (name) VALUES (?)`, [
+            supply_name,
+        ]);
+    }
+
+    // Tedarikçi Sil
+    static delete(supply_id) {
+        return connection.execute(`DELETE FROM supply WHERE id = ${supply_id}`);
+    }
+
+    // // Tedarikçi İlaç Ekle
+    // static supply_drug_create() {
+    //     return connection.execute(``);
+    // }
+
+    // // Tedarikçi İlaç Sil
+    // static supply_drug_delete() {
+    //     return connection.execute(``);
+    // }
+
+    // // Tedarikçi İlaç Sipariş Ekle
+    // static order_create() {
+    //     return connection.execute(``);
+    // }
+
+    // // Tedarikçi İlaç Sipariş Sil
+    // static order_delete() {
+    //     return connection.execute(``);
+    // }
+
     // Tedarikçi Sayısı
     static count_amount_supply() {
         return connection.execute(`
