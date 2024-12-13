@@ -25,10 +25,11 @@ exports.number_of_sales_revenue_by_months = async (req, res) => {
     });
 };
 
-// exports.number_of_sales_amount_by_months = async (req, res) => {
-//     const number_of_sales_amount_by_months = await Api.number_of_sales_amount_by_months();
+exports.number_of_sales_amount_by_months = async (req, res) => {
+    const number_of_sales_amount_by_months =
+        await Api.number_of_sales_amount_by_months();
 
-//     res.status(200).json({
-//         number_of_sales_amount_by_months: number_of_sales_amount_by_months[0],
-//     });
-// };
+    res.status(200).json({
+        number_of_sales_amount_by_months: number_of_sales_amount_by_months[0],
+    });
+};

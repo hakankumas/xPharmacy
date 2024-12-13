@@ -65,7 +65,33 @@ module.exports = class Api {
     }
 
     // Aylara Göre Satılan Adet Sayıları
-    // static number_of_sales_amount_by_months() {
-    //     return connection.execute(``);
-    // }
+    static number_of_sales_amount_by_months() {
+        return connection.execute(`
+            SELECT 
+                YEAR(customer_drug.date) AS year,
+                MONTHNAME(customer_drug.date) AS month,
+                MONTH(customer_drug.date) AS month_decimal,
+                CONCAT(
+                    YEAR(customer_drug.date), ' ', 
+                    CASE MONTH(customer_drug.date)
+                        WHEN 1 THEN 'Ocak'
+                        WHEN 2 THEN 'Şubat'
+                        WHEN 3 THEN 'Mart'
+                        WHEN 4 THEN 'Nisan'
+                        WHEN 5 THEN 'Mayıs'
+                        WHEN 6 THEN 'Haziran'
+                        WHEN 7 THEN 'Temmuz'
+                        WHEN 8 THEN 'Ağustos'
+                        WHEN 9 THEN 'Eylül'
+                        WHEN 10 THEN 'Ekim'
+                        WHEN 11 THEN 'Kasım'
+                        WHEN 12 THEN 'Aralık'
+                    END
+                ) AS fulldate,
+                SUM(customer_drug.amount) as number
+            FROM customer_drug
+            GROUP BY month , year
+            ORDER BY year DESC, month_decimal DESC
+        `);
+    }
 };
