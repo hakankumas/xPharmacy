@@ -7,7 +7,7 @@ module.exports = class Drug {
             SELECT 
                 drug.id as drug_id,
                 drug.name as drug_name,
-                CONCAT(ROUND(drug.sale_price,2),' TL') as drug_sale_price
+                ROUND(drug.sale_price,2) as drug_sale_price
             FROM drug`);
     }
 

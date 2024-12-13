@@ -11,30 +11,43 @@
         <!-- prettier-ignore -->
         <%- include('../_partials/_header') %>
         <%- include('../_partials/_sidebar') %>
-        <!-- prettier-ignore -->
 
         <main id="main" class="main" style="min-height: 100vh">
             <section class="section dashboard">
                 <div class="row">
                     <div class="col-12 col-lg-6">
                         <div class="card">
-                            <div class="card-body">
+                            <div class="card-body" style="min-height: 30vh">
                                 <h1
-                                    class="pt-3"
+                                    class="py-3"
                                     style="font-size: 24px; font-weight: bold"
                                 >
                                     Tedarikçi Ekle
                                 </h1>
-                                <form action="<%= baseURL %>/supply/create" method="post">
-                                    <div class="d-flex gap-3">
-                                        <input type="text" class="form-control" name="supply_name" placeholder="Tedarikçi Adı" required>
-                                        <button class="btn btn-success" style="width: 100px;" type="submit">Ekle</button>
+                                <form
+                                    action="<%= baseURL %>/supply/create"
+                                    method="post"
+                                >
+                                    <div class="d-flex flex-column gap-3 w-50">
+                                        <input
+                                            type="text"
+                                            class="form-control"
+                                            name="supply_name"
+                                            placeholder="Tedarikçi Adı"
+                                            required
+                                        />
+                                        <button
+                                            class="btn btn-success"
+                                            style="width: 100px"
+                                            type="submit"
+                                        >
+                                            Ekle
+                                        </button>
                                     </div>
                                 </form>
                             </div>
-                            <div
-                                class="card-body"
-                            >
+                            <hr />
+                            <div class="card-body" style="min-height: 60vh">
                                 <h1
                                     class="text-center pt-3"
                                     style="font-size: 24px; font-weight: bold"
@@ -75,15 +88,114 @@
                     </div>
                     <div class="col-12 col-lg-6">
                         <div class="card">
-                            Tedarikçi - İlaç Listesi Ekle
-                            <br>
-                            Tedarikçi - İlaç Listesi
+                            <div class="card-body" style="min-height: 30vh">
+                                <h1
+                                    class="py-3"
+                                    style="font-size: 24px; font-weight: bold"
+                                >
+                                    Tedarikçi - İlaç Bilgisi Ekle
+                                </h1>
+                                <form
+                                    action="<%= baseURL %>/supply/supply_drug/create"
+                                    method="post"
+                                >
+                                    <div class="d-flex flex-column gap-3 w-50">
+                                        <select
+                                            class="form-select"
+                                            name="supply_id"
+                                            required
+                                        >
+                                            <option value="" selected>
+                                                Tedarikçi Adı
+                                            </option>
+                                            <% list_supply.forEach(item => { %>
+                                            <option
+                                                value="<%= item.supply_id %>"
+                                            >
+                                                <%= item.supply_name %>
+                                            </option>
+                                            <% }) %>
+                                        </select>
+                                        <select
+                                            class="form-select"
+                                            name="drug_id"
+                                            required
+                                        >
+                                            <option value="" selected>
+                                                İlaç Adı
+                                            </option>
+                                            <!-- prettier-ignore -->
+                                            <% list_drug.forEach(item => { %>
+                                            <option value="<%= item.drug_id %>">
+                                                <%= item.drug_name %>
+                                            </option>
+                                            <% }) %>
+                                        </select>
+                                        <input
+                                            type="text"
+                                            class="form-control"
+                                            name="buying_price"
+                                            placeholder="Tedarikçi Satış Fiyatı, Örn: 24.99"
+                                            required
+                                        />
+                                        <button
+                                            class="btn btn-success"
+                                            style="width: 100px"
+                                            type="submit"
+                                        >
+                                            Ekle
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+                            <hr />
+                            <div class="card-body" style="min-height: 60vh">
+                                <h1
+                                    class="text-center pt-3"
+                                    style="font-size: 24px; font-weight: bold"
+                                >
+                                    Tedarikçi - İlaç Listesi
+                                </h1>
+                                <table
+                                    id="table_supply_drug"
+                                    class="display rounded"
+                                    style="
+                                        width: 100%;
+                                        background-color: whitesmoke;
+                                    "
+                                >
+                                    <thead>
+                                        <tr>
+                                            <th>Tedarikçi</th>
+                                            <th>İlaç</th>
+                                            <th class="text-center">
+                                                Tedarikçi Satış Fiyatı
+                                            </th>
+                                            <th class="text-center">Sil</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <!-- prettier-ignore -->
+                                        <% suppliers_sales_information.forEach(item => { %>
+                                        <!-- prettier-ignore -->
+                                        <tr>
+                                            <td><%= item.supply_name %></td>
+                                            <td><%= item.drug_name %></td>
+                                            <td class="text-center"><%= item.drug_buying_price %> ₺</td>
+                                            <td class="text-danger text-center">
+                                                <a href="<%= baseURL %>/supply/supply_drug/delete/<%= item.supply_drug_id %>" class="btn btn-outline-danger">Sil</a>
+                                            </td>
+                                        </tr>
+                                        <% }) %>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
                     <div class="col-12 col-lg-12">
                         <div class="card">
                             Tedarikçiden İlaç Siparişi Oluştur
-                            <br>
+                            <br />
                             Tedarik Edilen Sipariş Bilgileri
                         </div>
                     </div>
@@ -100,8 +212,16 @@
             new DataTable("#table_suppliers", {
                 paging: false,
                 scrollCollapse: true,
-                scrollY: "75vh",
+                scrollY: "50vh",
                 order: [[0, "desc"]],
+            });
+        </script>
+        <script>
+            new DataTable("#table_supply_drug", {
+                paging: false,
+                scrollCollapse: true,
+                scrollY: "50vh",
+                order: [[0, "asc"]],
             });
         </script>
     </body>

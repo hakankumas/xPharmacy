@@ -23,15 +23,21 @@ module.exports = class Supply {
         return connection.execute(`DELETE FROM supply WHERE id = ${supply_id}`);
     }
 
-    // // Tedarikçi İlaç Ekle
-    // static supply_drug_create() {
-    //     return connection.execute(``);
-    // }
+    // Tedarikçi İlaç Ekle
+    static supply_drug_create(condition) {
+        const { supply_id, drug_id, buying_price } = condition;
+        return connection.execute(
+            `INSERT INTO supply_drug (supply_id, drug_id, buying_price) VALUES (?,?,?)`,
+            [supply_id, drug_id, buying_price]
+        );
+    }
 
-    // // Tedarikçi İlaç Sil
-    // static supply_drug_delete() {
-    //     return connection.execute(``);
-    // }
+    // Tedarikçi İlaç Sil
+    static supply_drug_delete(supply_drug_id) {
+        return connection.execute(
+            `DELETE FROM supply_drug WHERE id = ${supply_drug_id}`
+        );
+    }
 
     // // Tedarikçi İlaç Sipariş Ekle
     // static order_create() {
@@ -79,7 +85,7 @@ module.exports = class Supply {
                 drug.id as drug_id,
                 drug.name as drug_name,
                 
-                supply_drug.buying_price as drug_buying_price
+                ROUND(supply_drug.buying_price,2) as drug_buying_price
                 
             FROM supply_drug
             INNER JOIN supply ON supply_drug.supply_id = supply.id
