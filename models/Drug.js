@@ -4,11 +4,16 @@ module.exports = class Drug {
     // İlaç Bilgileri
     static get_all() {
         return connection.execute(`
-            SELECT 
+            SELECT
                 drug.id as drug_id,
                 drug.name as drug_name,
-                ROUND(drug.sale_price,2) as drug_sale_price
-            FROM drug`);
+                ROUND(drug.sale_price,2) as drug_sale_price,
+                SUM(customer_drug.amount) as drug_total_amount,
+                ROUND(SUM(drug.sale_price * customer_drug.amount),2) as drug_total_revenue
+            FROM drug
+            LEFT JOIN customer_drug ON customer_drug.drug_id = drug.id
+            GROUP BY drug.id
+        `);
     }
 
     // İlaç Ekle

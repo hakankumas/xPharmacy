@@ -40,6 +40,8 @@
                                             <th class="text-center">ID</th>
                                             <th>İlaç</th>
                                             <th class="text-center">Fiyat</th>
+                                            <th class="text-center">Satılan Adet</th>
+                                            <th class="text-center">Toplam Gelir</th>
                                             <th class="text-center">Sil</th>
                                         </tr>
                                     </thead>
@@ -51,6 +53,8 @@
                                             <td class="text-center"><%= item.drug_id %></td>
                                             <td><%= item.drug_name %></td>
                                             <td class="text-center"><%= item.drug_sale_price %> ₺</td>
+                                            <td class="text-center"><%= item.drug_total_amount ? item.drug_total_amount : 0 %> Adet</td>
+                                            <td class="text-center"><%= item.drug_total_revenue ? item.drug_total_revenue : 0 %> ₺</td>
                                             <td class="text-danger text-center">
                                                 <a href="<%= baseURL %>/drug/delete/<%= item.drug_id %>" class="btn btn-outline-danger">Sil</a>
                                             </td>
@@ -132,7 +136,7 @@
                 paging: false,
                 scrollCollapse: true,
                 scrollY: "75vh",
-                order: [[0, "desc"]],
+                order: [[4, "desc"]],
             });
         </script>
     </body>
