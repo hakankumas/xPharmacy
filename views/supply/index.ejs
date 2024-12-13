@@ -93,7 +93,7 @@
                                     class="py-3"
                                     style="font-size: 24px; font-weight: bold"
                                 >
-                                    Tedarikçi - İlaç Bilgisi Ekle
+                                    Tedarikçi Fiyat Bilgisi Ekle
                                 </h1>
                                 <form
                                     action="<%= baseURL %>/supply/supply_drug/create"
@@ -154,7 +154,7 @@
                                     class="text-center pt-3"
                                     style="font-size: 24px; font-weight: bold"
                                 >
-                                    Tedarikçi - İlaç Listesi
+                                    Tedarikçi Fiyat Listesi
                                 </h1>
                                 <table
                                     id="table_supply_drug"
@@ -194,9 +194,103 @@
                     </div>
                     <div class="col-12 col-lg-12">
                         <div class="card">
-                            Tedarikçiden İlaç Siparişi Oluştur
-                            <br />
-                            Tedarik Edilen Sipariş Bilgileri
+                            <div class="card-body" style="min-height: 30vh">
+                                <h1
+                                    class="py-3"
+                                    style="font-size: 24px; font-weight: bold"
+                                >
+                                    Tedarikçiden Sipariş Oluştur
+                                </h1>
+                                <form
+                                    action="<%= baseURL %>/supply/order/create"
+                                    method="post"
+                                >
+                                    <div class="d-flex flex-column gap-3 w-50">
+                                        <select
+                                            class="form-select"
+                                            name="supply_drug_id"
+                                            required
+                                        >
+                                            <option value="">
+                                                Tedarikçi Satış Bilgisi
+                                            </option>
+                                            <!-- prettier-ignore -->
+                                            <% suppliers_sales_information.forEach(item => { %>
+                                            <!-- prettier-ignore -->
+                                            <option value="<%= item.supply_drug_id %>">
+                                                <%= `${item.supply_name} - ${item.drug_name} - ${item.drug_buying_price} TL` %>
+                                            </option>
+                                            <% }) %>
+                                        </select>
+                                        <input
+                                            type="text"
+                                            class="form-control"
+                                            name="amount"
+                                            placeholder="Adet"
+                                            required
+                                        />
+                                        <button
+                                            class="btn btn-success"
+                                            style="width: 100px"
+                                            type="submit"
+                                        >
+                                            Ekle
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+                            <hr />
+                            <div class="card-body" style="min-height: 60vh">
+                                <h1
+                                    class="text-center pt-3"
+                                    style="font-size: 24px; font-weight: bold"
+                                >
+                                    Tedarikçi Sipariş Listesi
+                                </h1>
+                                <table
+                                    id="table_order"
+                                    class="display rounded"
+                                    style="
+                                        width: 100%;
+                                        background-color: whitesmoke;
+                                    "
+                                >
+                                    <thead>
+                                        <tr>
+                                            <th class="text-center">ID</th>
+                                            <th>Tedarikçi</th>
+                                            <th>İlaç</th>
+                                            <th class="text-center">
+                                                Tedarikçi Satış Fiyatı
+                                            </th>
+                                            <th class="text-center">Adet</th>
+                                            <th class="text-center">
+                                                Toplam Tutar
+                                            </th>
+                                            <th class="text-center">Tarih</th>
+                                            <th class="text-center">Sil</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <!-- prettier-ignore -->
+                                        <% order_infos_for_supplied_drugs.forEach(item => { %>
+                                        <!-- prettier-ignore -->
+                                        <tr>
+                                            <td class="text-center"><%= item.order_id %></td>
+                                            <td><%= item.supply_name %></td>
+                                            <td><%= item.drug_name %></td>
+                                            <td class="text-center"><%= item.drug_buying_price %> ₺</td>
+                                            <td class="text-center"><%= item.order_amount %> Adet</td>
+                                            <td class="text-center"><%= item.order_total_price %> ₺</td>
+                                            <td class="text-center"><%= new Intl.DateTimeFormat("tr-TR", { day: "numeric", month: "short", year: "numeric" }).format(new Date(item.order_date)) %></td>
+                                            <td class="text-danger text-center">
+                                                <a href="<%= baseURL %>/supply/order/delete/<%= item.order_id %>" class="btn btn-outline-danger">Sil</a>
+                                            </td>
+                                        </tr>
+                                        <% }) %>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -222,6 +316,14 @@
                 scrollCollapse: true,
                 scrollY: "50vh",
                 order: [[0, "asc"]],
+            });
+        </script>
+        <script>
+            new DataTable("#table_order", {
+                paging: false,
+                scrollCollapse: true,
+                scrollY: "50vh",
+                order: [[0, "desc"]],
             });
         </script>
     </body>

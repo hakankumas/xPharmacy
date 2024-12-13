@@ -39,15 +39,21 @@ module.exports = class Supply {
         );
     }
 
-    // // Tedarikçi İlaç Sipariş Ekle
-    // static order_create() {
-    //     return connection.execute(``);
-    // }
+    // Tedarikçi İlaç Sipariş Ekle
+    static order_create(condition) {
+        const { supply_drug_id, amount } = condition;
+        return connection.execute(
+            `INSERT INTO supply_drug_order (supply_drug_id, amount) VALUES (?,?)`,
+            [supply_drug_id, amount]
+        );
+    }
 
-    // // Tedarikçi İlaç Sipariş Sil
-    // static order_delete() {
-    //     return connection.execute(``);
-    // }
+    // Tedarikçi İlaç Sipariş Sil
+    static order_delete(order_id) {
+        return connection.execute(
+            `DELETE FROM supply_drug_order WHERE id = ${order_id}`
+        );
+    }
 
     // Tedarikçi Sayısı
     static count_amount_supply() {
@@ -104,7 +110,7 @@ module.exports = class Supply {
                 supply.name as supply_name,
                 drug.id as drug_id,
                 drug.name as drug_name,
-                supply_drug.buying_price as drug_buying_price,
+                ROUND(supply_drug.buying_price,2) as drug_buying_price,
                 
                 supply_drug_order.amount as order_amount,
                 ROUND(supply_drug_order.amount * supply_drug.buying_price,2) as order_total_price,

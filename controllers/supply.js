@@ -39,12 +39,12 @@ exports.supply_drug_delete = async (req, res) => {
     if (supply_drug) res.redirect("/supply");
 };
 
-// exports.order_create = async (req, res) => {
-//     const order = await Supply.order_create(req.body);
-//     if (order) res.redirect("/supply");
-// };
+exports.order_create = async (req, res) => {
+    const order = await Supply.order_create(req.body);
+    if (order) res.redirect("/supply");
+};
 
-// exports.order_delete = async (req, res) => {
-//     const order = await Supply.order_delete(req.params.id);
-//     if (order) res.redirect("/supply");
-// };
+exports.order_delete = async (req, res) => {
+    const order = await Supply.order_delete(req.params.id);
+    if (order) res.redirect("/supply");
+};
