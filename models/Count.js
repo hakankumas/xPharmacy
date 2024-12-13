@@ -48,4 +48,23 @@ module.exports = class Home {
             FROM supply_drug_order
         `);
     }
+
+    // Toplam Hasılat
+    static sum_total_revenue() {
+        return connection.execute(`
+            SELECT 
+                ROUND(SUM(drug.sale_price * customer_drug.amount),2) as number
+            FROM customer_drug
+            INNER JOIN drug ON customer_drug.drug_id = drug.id
+        `);
+    }
+
+    // Toplam Satılan İlaç Adedi
+    static sum_total_amount() {
+        return connection.execute(`
+            SELECT 
+                SUM(customer_drug.amount) as number
+            FROM customer_drug
+        `);
+    }
 };

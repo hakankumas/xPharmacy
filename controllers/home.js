@@ -8,6 +8,9 @@ exports.index = async (req, res) => {
     const count_amount_supply_drug = await Count.count_amount_supply_drug();
     const count_amount_order = await Count.count_amount_order();
 
+    const sum_total_revenue = await Count.sum_total_revenue();
+    const sum_total_amount = await Count.sum_total_amount();
+
     res.render("index", {
         title: "Ana Sayfa",
 
@@ -17,6 +20,9 @@ exports.index = async (req, res) => {
         count_amount_supply: count_amount_supply[0],
         count_amount_supply_drug: count_amount_supply_drug[0],
         count_amount_order: count_amount_order[0],
+
+        sum_total_revenue: sum_total_revenue[0],
+        sum_total_amount: sum_total_amount[0],
     });
 };
 
