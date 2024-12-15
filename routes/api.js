@@ -19,5 +19,9 @@ router.get(
     "/number_of_orders_placed_from_suppliers",
     apiController.number_of_orders_placed_from_suppliers
 );
+router.get(
+    "/number_of_drugs_sold_by_months",
+    apiController.number_of_drugs_sold_by_months
+);
 
 module.exports = router;

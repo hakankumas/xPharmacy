@@ -43,3 +43,12 @@ exports.number_of_orders_placed_from_suppliers = async (req, res) => {
             number_of_orders_placed_from_suppliers[0],
     });
 };
+
+exports.number_of_drugs_sold_by_months = async (req, res) => {
+    const number_of_drugs_sold_by_months =
+        await Api.number_of_drugs_sold_by_months();
+
+    res.status(200).json({
+        number_of_drugs_sold_by_months: number_of_drugs_sold_by_months[0],
+    });
+};

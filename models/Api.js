@@ -109,4 +109,20 @@ module.exports = class Api {
             GROUP BY supply.id
         `);
     }
+
+    // Aylara Göre Satılan İlaç Adetleri
+    static number_of_drugs_sold_by_months() {
+        return connection.execute(`
+            SELECT
+                drug.id as drug_id,
+                drug.name as drug_name,
+                SUM(customer_drug.amount) AS customer_drug_amount,
+                ROUND(SUM(customer_drug.amount * drug.sale_price),2) AS drug_total_price,
+				DATE_FORMAT(customer_drug.date, '%Y-%m') AS customer_drug_date
+            FROM drug
+                INNER JOIN customer_drug ON customer_drug.drug_id = drug.id
+            GROUP BY drug.id, MONTHNAME(customer_drug.date), YEAR(customer_drug.date)
+            ORDER BY YEAR(customer_drug.date) DESC, MONTH(customer_drug.date) DESC
+        `);
+    }
 };
