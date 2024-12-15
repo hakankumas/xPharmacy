@@ -183,20 +183,20 @@
             <section class="section dashboard">
                 <div class="row">
                     <div
-                        class="col-lg-12 d-flex justify-content-center gap-5 flex-wrap"
+                        class="col-lg-12 d-flex justify-content-center flex-wrap"
                     >
-                        <div class="col-12 col-lg-3">
-                            <div class="card info-card sales-card" style="min-height: 25vh; background-color: #66ffb3;">
+                        <div class="col-12 col-lg-3 px-4">
+                            <div class="card info-card sales-card" style="min-height: 20vh; background-color: #4154f1;">
                                 <div class="card-body">
-                                    <h5 class="card-title">Toplam Gelir</h5>
-                                    <div class="d-flex align-items-center">
+                                    <h5 class="card-title" style="color: white">Toplam Gelir</h5>
+                                    <div class="d-flex align-items-center" style="color: white">
                                         <div
-                                            class="card-icon rounded-circle d-flex align-items-center justify-content-center"
+                                            class="card-icon rounded-circle d-flex align-items-center justify-content-center" style="color: #4154f1"
                                         >
                                             <i class="fa-solid fa-turkish-lira-sign"></i>
                                         </div>
                                         <div class="ps-3">
-                                            <h6>
+                                            <h6 style="color: white">
                                                 <%=
                                                     sum_total_revenue[0].number
                                                 %> ₺
@@ -207,8 +207,8 @@
                             </div>
                         </div>
                         
-                        <div class="col-12 col-lg-2">
-                            <div class="card info-card sales-card" style="min-height: 25vh;">
+                        <div class="col-12 col-lg-3 px-4">
+                            <div class="card info-card sales-card" style="min-height: 20vh;">
                                 <div class="card-body">
                                     <h5 class="card-title">Satılan İlaç Adedi</h5>
                                     <div class="d-flex align-items-center">
@@ -229,8 +229,8 @@
                             </div>
                         </div>
                         
-                        <div class="col-12 col-lg-2">
-                            <div class="card info-card sales-card" style="min-height: 25vh;">
+                        <div class="col-12 col-lg-3 px-4">
+                            <div class="card info-card sales-card" style="min-height: 20vh;">
                                 <div class="card-body">
                                     <h5 class="card-title">Müşteri (Kişi)</h5>
                                     <div class="d-flex align-items-center">
@@ -251,8 +251,8 @@
                             </div>
                         </div>
 
-                        <div class="col-12 col-lg-2">
-                            <div class="card info-card sales-card" style="min-height: 25vh;">
+                        <div class="col-12 col-lg-3 px-4">
+                            <div class="card info-card sales-card" style="min-height: 20vh;">
                                 <div class="card-body">
                                     <h5 class="card-title">
                                         Alışveriş (İşlem)
@@ -274,10 +274,8 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-lg-12 d-flex justify-content-center gap-5 flex-wrap">
-                        <div class="col-12 col-lg-2">
-                            <div class="card info-card sales-card" style="min-height: 25vh;">
+                        <div class="col-12 col-lg-3 px-4">
+                            <div class="card info-card sales-card" style="min-height: 20vh;">
                                 <div class="card-body">
                                     <h5 class="card-title">
                                         Kayıtlı İlaç Çeşidi (Stok)
@@ -300,11 +298,11 @@
                             </div>
                         </div>
 
-                        <div class="col-12 col-lg-2">
-                            <div class="card info-card sales-card" style="min-height: 25vh;">
+                        <div class="col-12 col-lg-3 px-4">
+                            <div class="card info-card sales-card" style="min-height: 20vh;">
                                 <div class="card-body">
                                     <h5 class="card-title">Tedarikçi</h5>
-                                    <div class="d-flex align-items-center">
+                                    <div class="d-flex align-items-center mt-4 mb-1">
                                         <div
                                             class="card-icon rounded-circle d-flex align-items-center justify-content-center"
                                         >
@@ -322,8 +320,8 @@
                             </div>
                         </div>
 
-                        <div class="col-12 col-lg-2">
-                            <div class="card info-card sales-card" style="min-height: 25vh;">
+                        <div class="col-12 col-lg-3 px-4">
+                            <div class="card info-card sales-card" style="min-height: 20vh;">
                                 <div class="card-body">
                                     <h5 class="card-title">
                                         Tedarik Edilebilir İlaç Çeşidi
@@ -346,8 +344,8 @@
                             </div>
                         </div>
 
-                        <div class="col-12 col-lg-2">
-                            <div class="card info-card sales-card" style="min-height: 25vh;">
+                        <div class="col-12 col-lg-3 px-4">
+                            <div class="card info-card sales-card" style="min-height: 20vh;">
                                 <div class="card-body">
                                     <h5 class="card-title">
                                         Tedarikçilerden Verilen İlaç Siparişi
@@ -395,7 +393,7 @@
                                     class="text-center pt-3"
                                     style="font-size: 25px; font-weight: bold;"
                                 >
-                                    Aylara Göre Hasılatlar
+                                    Aylara Göre Hasılatlar (₺)
                                 </h1>
                                 <div
                                     id="chart_div2"
@@ -411,7 +409,7 @@
                                     class="text-center pt-3"
                                     style="font-size: 25px; font-weight: bold;"
                                 >
-                                    Aylara Göre Satılan İlaç Adetleri
+                                    Aylara Göre Satılan Toplam İlaç Adetleri
                                 </h1>
                                 <div
                                     id="chart_div3"

@@ -125,4 +125,32 @@ module.exports = class Api {
             ORDER BY YEAR(customer_drug.date) DESC, MONTH(customer_drug.date) DESC
         `);
     }
+
+    // İlaçlardan Elde Edilen Gelirler
+    static revenue_by_drugs() {
+        return connection.execute(`
+            SELECT
+                drug.id as drug_id,
+                drug.name as drug_name,
+                ROUND(SUM(drug.sale_price * customer_drug.amount),2) as drug_total_revenue
+            FROM drug
+            LEFT JOIN customer_drug ON customer_drug.drug_id = drug.id
+            GROUP BY drug.id
+            ORDER BY drug_total_revenue DESC
+        `);
+    }
+
+    // Satılan İlaçların Adet Olarak Dağılımı
+    static distribution_of_drugs() {
+        return connection.execute(`
+            SELECT
+                drug.id as drug_id,
+                drug.name as drug_name,
+                SUM(customer_drug.amount) as drug_total_amount
+            FROM drug
+            LEFT JOIN customer_drug ON customer_drug.drug_id = drug.id
+            GROUP BY drug.id
+            ORDER BY drug_total_amount DESC
+        `);
+    }
 };
