@@ -68,3 +68,11 @@ exports.distribution_of_drugs = async (req, res) => {
         distribution_of_drugs: distribution_of_drugs[0],
     });
 };
+
+exports.distribution_of_customer = async (req, res) => {
+    const distribution_of_customer = await Api.distribution_of_customer();
+
+    res.status(200).json({
+        distribution_of_customer: distribution_of_customer[0],
+    });
+};

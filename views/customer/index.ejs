@@ -8,9 +8,10 @@
         <!-- prettier-ignore -->
         <script type="text/javascript">
             google.charts.load("current", { packages: ["corechart"] });
-            google.charts.setOnLoadCallback(drawChart);
+            google.charts.setOnLoadCallback(drawChart1);
+            google.charts.setOnLoadCallback(drawChart2);
 
-            function drawChart() {
+            function drawChart1() {
                 fetch(`<%= baseURL %>/api/distribution_of_drugs`)
                     .then((response) => response.json())
                     .then((data) => {
@@ -25,15 +26,50 @@
 
                         const options = {
                             chartArea: {
-                                top: 50,
+                                top: 25,
                                 right: 25,
-                                bottom: 50,
+                                bottom: 25,
                                 left: 75,
                             },
                         };
 
                         const chart = new google.visualization.PieChart(
                             document.getElementById("chart_div")
+                        );
+
+                        chart.draw(dataTable, options);
+                    })
+                    .catch((error) => {
+                        console.error(
+                            "API çağrısı sırasında bir hata oluştu:",
+                            error
+                        );
+                    });
+            }
+            function drawChart2() {
+                fetch(`<%= baseURL %>/api/distribution_of_customer`)
+                    .then((response) => response.json())
+                    .then((data) => {
+                        const chartData = [["Cinsiyet", "Yüzde"]];
+
+                        data.distribution_of_customer.forEach((item) => {
+                            chartData.push([item.gender_name, item.number]);
+                        });
+
+                        const dataTable =
+                            google.visualization.arrayToDataTable(chartData);
+
+                        const options = {
+                            chartArea: {
+                                top: 25,
+                                right: 25,
+                                bottom: 25,
+                                left: 75,
+                            },
+                        };
+
+                        const chart = new google.visualization.PieChart(
+                            document.getElementById("chart_div2")
                         );
 
                         chart.draw(dataTable, options);
@@ -68,7 +104,7 @@
                                 </h1>
                                 <div
                                     id="chart_div"
-                                    style="min-width: 100%; height: 60vh"
+                                    style="min-width: 100%; height: 40vh"
                                 ></div>
                             </div>
                         </div>
@@ -83,8 +119,8 @@
                                     Müşterilerin Cinsiyet Dağılımı
                                 </h1>
                                 <div
-                                    id="chart_div"
-                                    style="min-width: 100%; height: 60vh"
+                                    id="chart_div2"
+                                    style="min-width: 100%; height: 40vh"
                                 ></div>
                             </div>
                         </div>

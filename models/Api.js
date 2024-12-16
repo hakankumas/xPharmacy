@@ -153,4 +153,17 @@ module.exports = class Api {
             ORDER BY drug_total_amount DESC
         `);
     }
+
+    // Müşterilerin Cinsiyet Dağılımı
+    static distribution_of_customer() {
+        return connection.execute(`
+            SELECT
+                customer.gender_id as gender_id,
+                gender.name as gender_name,
+                COUNT(customer.id) as number
+            FROM customer
+            INNER JOIN gender ON customer.gender_id = gender.id
+            GROUP BY gender.id
+        `);
+    }
 };

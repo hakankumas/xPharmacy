@@ -25,5 +25,6 @@ router.get(
 );
 router.get("/revenue_by_drugs", apiController.revenue_by_drugs);
 router.get("/distribution_of_drugs", apiController.distribution_of_drugs);
+router.get("/distribution_of_customer", apiController.distribution_of_customer);
 
 module.exports = router;
