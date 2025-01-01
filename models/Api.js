@@ -28,7 +28,7 @@ module.exports = class Api {
                 COUNT(customer_drug.id) as number
             FROM customer_drug
             GROUP BY month , year
-            ORDER BY year DESC, month_decimal DESC
+            ORDER BY year ASC, month_decimal ASC
         `);
     }
 
@@ -60,7 +60,7 @@ module.exports = class Api {
             FROM customer_drug
             INNER JOIN drug ON customer_drug.drug_id = drug.id
             GROUP BY month , year
-            ORDER BY year DESC, month_decimal DESC
+            ORDER BY year ASC, month_decimal ASC
         `);
     }
 
@@ -91,7 +91,7 @@ module.exports = class Api {
                 SUM(customer_drug.amount) as number
             FROM customer_drug
             GROUP BY month , year
-            ORDER BY year DESC, month_decimal DESC
+            ORDER BY year ASC, month_decimal ASC
         `);
     }
 
@@ -122,7 +122,7 @@ module.exports = class Api {
             FROM drug
                 INNER JOIN customer_drug ON customer_drug.drug_id = drug.id
             GROUP BY drug.id, MONTHNAME(customer_drug.date), YEAR(customer_drug.date)
-            ORDER BY YEAR(customer_drug.date) DESC, MONTH(customer_drug.date) DESC
+            ORDER BY YEAR(customer_drug.date) ASC, MONTH(customer_drug.date) ASC
         `);
     }
 
